@@ -1,0 +1,69 @@
+{
+
+    "title": "Post",
+
+    "type": "object",
+
+    "description": "This is a post type.",
+
+    "imports": {
+
+        "\\./date-time": ["DateTime"]
+
+    },
+
+    "properties": {
+
+        "id": {
+
+            "type": "number",
+
+            "readOnly": true
+
+        },
+
+        "title": {
+
+            "type": "string"
+
+        },
+
+        "body": {
+
+            "type": "string",
+
+            "readOnly": true
+
+        },
+
+        "tags": {
+
+            "type": "array",
+
+            "items": "string"
+
+        },
+
+        "created_on": {
+
+            "type": "DateTime"
+
+        },
+
+        "created_by": {
+
+            "type": "sum",
+
+            "variants": {
+
+                "read": {
+                    "type": "string"
+                },
+
+                "write": {
+                    "type": "number"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,11 @@
+{% from "./macros.nunjucks" import type2TS %}
+{{ import2TS(document.imports, { '@quenk/noni/lib/data/jsonx': '_json' }) }}
+
+/**
+ * {{document.title}} type (AUTO GENERATED).
+ {% if document.description %}
+ *
+ * {{document.description}} 
+ {% endif %}
+ */
+export interface {{document.title}} extends _json.Object {{type2TS(document)}}
