@@ -1,0 +1,195 @@
+{#
+
+  optional
+
+  Makes a precondition optional.
+  @param {Schema} type
+  @param {Output} content
+
+#}
+{% macro optional (type, content) %}
+
+  {%- if type.optional -%}
+    {%- if isObjectType(type) -%}
+      _prec.optional<_json.Value, {{type.title}}>({{content}})
+    {%- else -%}
+      _prec.optional({{content}})
+    {%- endif %}
+  {%- else -%}
+    _prec.and(_prec.notNull, {{content}})
+  {%- endif -%}
+
+{% endmacro %}
+
+{# 
+  Turns an array schema into a precondition. 
+  
+  @param {Schema} type
+  @param {string} mode
+
+#}
+{% macro arrayType2Validator(type, mode) %}
+
+  {% set content -%}
+    _prec.and(_arrayPrec.isArray, _arrayPrec.map({{schema2Validator(type.items, mode)}}))
+  {%- endset %}
+
+  {% if hasValidators(type,mode) -%}
+   {% set content -%}
+   _prec.and({{content}}, 
+     _prec.every<_json.Value,_json.Value>({{getValidators(type,mode)|join(',')}}))
+   {%- endset %}
+  {% endif %}
+
+  {{optional(type, content)}}
+
+{% endmacro %}
+
+{# Turn an object schema into a record of preconditions
+  
+  @param {Schema} type
+  @param {string} mode
+#}
+{% macro objectType2Validator (type, mode) %}
+
+  {% if isObject(type.additionalProperties) and (not type.properties) %}
+
+    {%- set content -%}
+      _prec.and(_isRecord, _recordMap<_json.Value, _json.Value, {{type.title}}>(
+      {{anyType2Validator(type.additionalProperties, mode)}}))
+    {%- endset -%}
+
+  {% elseif isObject(type.properties) %}
+
+    {%- set content -%}
+      _prec.and(_isRecord, {{mode}}<_json.Value, _json.Value, {{type.title}}>({
+        {% for key,value in type.properties %}
+          {% if (not value.readOnly) or hasValidators(value,mode)  %}
+            '{{key}}' : {{schema2Validator(value,mode)|trim}}{% if not loop.last %},{% endif %}
+            {{"\n"}}
+          {% endif %}
+        {%- endfor -%}
+      }))
+    {%- endset -%}
+
+  {% else %}
+
+    {%- set content -%}_prec.reject('not configured'){% endset %}
+
+  {% endif %}
+
+  {% if hasValidators(type,mode) -%}
+
+   {% set content -%}
+   _prec.and({{content}}, _prec.every<_json.Value,_json.Value>({{getValidators(type,mode)|join(',')}}))
+   {%- endset %}
+
+  {% endif %}
+
+  {{ optional(type, content) }}
+
+{% endmacro %}
+
+{# 
+  
+  Turn a sum schema into a precondition 
+  @param {Schema} type
+  @param {string} mode
+
+#}
+{% macro sumType2Validator (type, mode) %}
+
+  {% if type.discriminator and type.discriminator.type == 'rw' %}
+
+    {%- set content -%}
+     {{schema2Validator(type.variants.write, mode)}}
+    {%- endset -%}
+
+  {% elseif type.discriminator and type.discriminator.type == 'shape' %}
+
+    {%- set content -%}
+    _prec.match(
+      {%- for key,variant in type.variants -%}
+
+      {% set shape =  variant.discriminator %}
+      {% set validator =  schema2Validator(variant, mode) %}
+      _prec.caseOf({{shape|dump}}, {{validator}}){% if not loop.last %},{% endif %}
+
+      {%- endfor -%})
+    {% endset %}
+
+  {% else %}
+
+    {% set json %}{{type|dump}}{% endset %}
+    {{ 'sumType2Validator: Unknown discriminator type '+ 
+    type.discriminator.type+ ' in '+json | error }}
+
+  {% endif %}
+
+  {{ optional(type, content) | trim}}
+
+{% endmacro %}
+
+{#
+  turns any schema type into a validator 
+
+  @param {Schema} type
+#}
+{% macro anyType2Validator(type, mode) %}
+  {%- set content -%}
+    {% if hasValidators(type,mode) %}
+      _prec.and({{_castPrim(type.type)}},
+      _prec.every<_json.Value,_json.Value>({{getValidators(type,mode)|join(',')}}))
+    {% elseif type.type == "any" %}
+       _prec.identity
+    {% else %}
+      {{_castPrim(type.type)}}
+    {% endif %}
+    {%- endset -%}
+  {{ optional(type, content) | trim }}
+{% endmacro %}
+
+{#
+  @param {string} type
+#}
+{% macro _castPrim(type) %}
+  {% if type == "boolean" %}
+    _boolean
+  {% elseif type == "number" %}
+    _number
+  {% elseif type == "string" %}
+    _string
+  {% else %}
+    _prec.identity
+  {% endif %}
+{% endmacro %}
+
+{# 
+ 
+  Turn a type into a precondition. 
+  
+  @param {Schema} type
+  @param {string} mode
+
+#}
+{% macro schema2Validator(type, mode="complete") %}
+
+  {%- if isArrayType(type) -%}
+
+    {{arrayType2Validator(type, mode)}}
+
+  {%- elseif isObjectType(type) -%}
+    
+    {{objectType2Validator(type, mode) | trim }}
+
+  {%- elseif isSumType(type) -%}
+
+    {{sumType2Validator(type, mode) | trim }}
+    
+  {%- else -%}
+
+    {{anyType2Validator(type,mode) | trim }}
+    
+  {%- endif -%}
+
+{% endmacro %}

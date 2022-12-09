@@ -1,0 +1,79 @@
+{
+
+    "title": "User",
+
+    "type": "object",
+
+    "imports": {
+
+        "validators:\\.\\./data-types/user": ["User"]
+    },
+
+    "properties": {
+
+        "id": {
+
+            "type": "number",
+
+            "readOnly": true
+
+        },
+
+        "username": {
+
+            "type": "string",
+
+            "validators": "../data-validators/validators#name"
+
+        },
+
+        "email": {
+
+            "type": "string",
+
+            "validators": [
+
+                ["../data-validators/validators#range", [3, 20]],
+
+                "../data-validators/validators#email"
+
+            ]
+
+        },
+
+        "tags": {
+
+            "type": "array",
+
+            "items": {
+
+                "type": "string",
+
+                "optional": true,
+
+                "validators": "../data-validators/validators#tag"
+
+            }
+
+        },
+
+        "last_login": {
+
+            "type": "string",
+
+            "validators": "../data-validators/validators#date",
+
+            "readOnly": true
+
+        }
+
+    },
+
+    "test": {
+
+      "target": "user",
+
+      "data": "./data/user"
+
+    }
+}

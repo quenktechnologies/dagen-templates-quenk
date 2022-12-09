@@ -1,4 +1,8 @@
 #!/bin/bash
-./node_modules/.bin/dagen --template data-types/type.nunjucks \
---plugin ./node_modules/@quenk/dagen-commons/lib/plugins/imports \
-test/schema/post.json > test/data-types/post.ts
+
+for schema in ./test/schema/*.json;
+do
+  ./node_modules/.bin/dagen --template data-types/type.nunjucks \
+  --plugin ./node_modules/@quenk/dagen-commons/lib/plugins/imports \
+  "$schema" > test/data-types/$(basename -s .json "$schema").ts
+done

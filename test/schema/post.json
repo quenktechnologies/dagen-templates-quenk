@@ -8,7 +8,9 @@
 
     "imports": {
 
-        "\\./date-time": ["DateTime"]
+        "\\.\\./datetime": ["DateTime"],
+
+        "validators:\\.\\./data-types/post": ["Post"]
 
     },
 
@@ -54,14 +56,24 @@
 
             "type": "sum",
 
+            "discriminator": {
+
+                "type": "rw"
+
+            },
+
             "variants": {
 
                 "read": {
+
                     "type": "string"
+
                 },
 
                 "write": {
+
                     "type": "number"
+
                 }
             }
         }

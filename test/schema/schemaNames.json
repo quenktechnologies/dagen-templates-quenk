@@ -1,0 +1,23 @@
+{
+
+    "type": "object",
+
+    "title": "SchemaNames",
+
+    "schemaNames": "post,user",
+
+    "additionalProperties": {},
+
+    "validators:properties": {
+
+        "id": {
+
+            "type": "number",
+
+            "readOnly": true
+
+        }
+
+    }
+
+}
