@@ -43,7 +43,7 @@ const tests: Record<Record<TestData>> = {
             cmd: `./node_modules/.bin/dagen --templates $(pwd)/data-validators \
                 --template type.nunjucks \
                 --plugin ./node_modules/@quenk/dagen-commons/lib/plugins/imports \
-                --plugin ./node_modules/@quenk/dagen-commons/lib/plugins/validation \
+                --plugin ./node_modules/@quenk/dagen-commons/lib/plugins/validators \
                 --namespace validators \
                 ${__dirname}/schema/{schema}.json`
 
@@ -68,6 +68,47 @@ const tests: Record<Record<TestData>> = {
             cmd: `./node_modules/.bin/dagen --templates $(pwd)/data-validators \
                   --template index.nunjucks \
                   --namespace validators \
+                 ${__dirname}/schema/{schema}.json`
+
+        }
+
+    },
+
+    'data-checks': {
+
+        'type.nunjucks': {
+
+            schemas: ['post', 'user'],
+
+            cmd: `./node_modules/.bin/dagen --templates $(pwd)/data-checks \
+                --template type.nunjucks \
+                --plugin ./node_modules/@quenk/dagen-commons/lib/plugins/imports \
+                --plugin ./node_modules/@quenk/dagen-commons/lib/plugins/checks \
+                --namespace checks \
+                --namespace validators \
+                ${__dirname}/schema/{schema}.json`
+
+        },
+
+        'test.nunjucks': {
+
+            schemas: ['post', 'user'],
+
+            cmd: `./node_modules/.bin/dagen --templates $(pwd)/data-checks \
+                  --template test.nunjucks \
+                  --namespace checks \
+                  ${__dirname}/schema/{schema}.json`
+
+
+        },
+
+        'index.nunjucks': {
+
+            schemas: ['schemaNames'],
+
+            cmd: `./node_modules/.bin/dagen --templates $(pwd)/data-checks \
+                  --template index.nunjucks \
+                  --namespace checks \
                  ${__dirname}/schema/{schema}.json`
 
         }

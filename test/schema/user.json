@@ -9,6 +9,8 @@
         "validators:\\.\\./data-types/user": ["User"]
     },
 
+    "collection": "users",
+
     "properties": {
 
         "id": {
@@ -71,9 +73,9 @@
 
     "test": {
 
-      "target": "user",
+        "target": "user",
 
-      "data": "./data/user"
+        "data": "./data/user"
 
     }
 }

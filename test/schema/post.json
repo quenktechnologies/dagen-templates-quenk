@@ -8,11 +8,13 @@
 
     "imports": {
 
-        "\\.\\./datetime": ["DateTime"],
+        "types:\\.\\./datetime": ["DateTime"],
 
         "validators:\\.\\./data-types/post": ["Post"]
 
     },
+
+    "collection": "posts",
 
     "properties": {
 
@@ -20,13 +22,21 @@
 
             "type": "number",
 
-            "readOnly": true
+            "readOnly": true,
+
+            "checks": [
+
+                ["checks#id", ["collection"]]
+
+            ]
 
         },
 
         "title": {
 
-            "type": "string"
+            "type": "string",
+
+            "checks": "checks#title"
 
         },
 
@@ -34,7 +44,9 @@
 
             "type": "string",
 
-            "readOnly": true
+            "readOnly": true,
+
+            "checks": "checks#toHTML"
 
         },
 
@@ -48,7 +60,15 @@
 
         "created_on": {
 
-            "type": "DateTime"
+            "type": "DateTime",
+
+            "checks": [
+
+                "checks#toDate",
+
+                ["checks#localize", ["'Port of Spain'"]]
+
+            ]
 
         },
 
@@ -77,5 +97,13 @@
                 }
             }
         }
+    },
+
+    "checks:test": {
+
+        "target": "user",
+
+        "data": "./data/user"
+
     }
 }

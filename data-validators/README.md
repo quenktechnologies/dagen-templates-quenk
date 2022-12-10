@@ -16,7 +16,7 @@ These templates contain three main template files:
 
 ### Plugins
 1. `@quenk/dagen-commons/lib/plugins/imports`
-2. `@quenk/dagen-commons/lib/plugins/validation`
+2. `@quenk/dagen-commons/lib/plugins/validators`
 
 ### Schema
 For `index.nunjucks` the document must have a `schemaNames` property that is
