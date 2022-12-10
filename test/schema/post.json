@@ -16,6 +16,14 @@
 
     "collection": "posts",
 
+    "paths": {
+
+      "search": "/r/posts/search",
+
+      "get": "/r/posts/{id}"
+
+    },
+
     "properties": {
 
         "id": {

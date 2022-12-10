@@ -194,6 +194,22 @@ const tests: Record<Record<TestData>> = {
 
         }
 
+    },
+
+    'remote-models': {
+
+        'model.nunjucks': {
+
+            schemas: ['post', 'user'],
+
+            cmd: `./node_modules/.bin/dagen --templates $(pwd)/remote-models \
+                --template model.nunjucks \
+                --plugin ./node_modules/@quenk/dagen-commons/lib/plugins/imports \
+                --namespace rmodels \
+                ${__dirname}/schema/{schema}.json`
+
+        },
+
     }
 
 }
