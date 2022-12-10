@@ -1,24 +1,24 @@
 {
-  "name": "dagen-templates-quenk",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Lasana Murray <info@quenk.com> (http://quenk.com/)",
-  "license": "Apache-2.0",
-  "devDependencies": {
-    "@quenk/dagen": "^1.10.3",
-    "@quenk/dagen-commons": "^0.5.4",
-    "@quenk/noni": "^1.44.1",
-    "@quenk/test": "^2.5.0",
-    "@types/mocha": "^10.0.1",
-    "@types/node": "^18.11.12",
-    "mocha": "^10.1.0",
-    "ts-node": "^10.9.1"
-  },
-  "dependencies": {
-    "@quenk/preconditions": "^5.6.0"
-  }
+    "name": "dagen-templates-quenk",
+    "version": "1.0.0",
+    "description": "Dagen templates used by Quenk Technologies Limited.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Lasana Murray <info@quenk.com> (http://quenk.com/)",
+    "license": "Apache-2.0",
+    "devDependencies": {
+        "@quenk/dagen": "^1.10.3",
+        "@quenk/dagen-commons": "^0.5.4",
+        "@quenk/noni": "^1.44.1",
+        "@quenk/test": "^2.5.0",
+        "@types/mocha": "^10.0.1",
+        "@types/node": "^18.11.12",
+        "mocha": "^10.1.0",
+        "ts-node": "^10.9.1"
+    },
+    "dependencies": {
+        "@quenk/preconditions": "^5.6.0"
+    }
 }
