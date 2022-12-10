@@ -1,4 +1,4 @@
-import { DateTime } from './date-time';
+import { DateTime } from '../datetime';
 import * as _json from '@quenk/noni/lib/data/jsonx';
 
 /**
