@@ -99,6 +99,17 @@
         }
     },
 
+    "methods": {
+
+    "create": {
+
+        "type": "Future<string>",
+
+        "parameters": ["id: Id", "data: Comment"]
+
+    }
+    },
+
     "checks:test": {
 
         "target": "user",

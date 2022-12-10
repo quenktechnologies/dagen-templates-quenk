@@ -9,6 +9,8 @@
         "validators:\\.\\./data-types/user": ["User"]
     },
 
+    "idKey": "username",
+
     "collection": "users",
 
     "properties": {

@@ -3,7 +3,6 @@
  */
  
 import { User } from '../data-types/user';
-import { name,range,email,tag,date } from '../data-validators/validators';
 import * as _json from '@quenk/noni/lib/data/jsonx';
 import * as _prec from '@quenk/preconditions/lib/async';
 import * as _recordPrec from '@quenk/preconditions/lib/async/record';

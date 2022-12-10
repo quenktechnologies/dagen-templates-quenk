@@ -113,6 +113,33 @@ const tests: Record<Record<TestData>> = {
 
         }
 
+    },
+
+    'mongodb-models': {
+
+        'model.nunjucks': {
+
+            schemas: ['post', 'user'],
+
+            cmd: `./node_modules/.bin/dagen --templates $(pwd)/mongodb-models \
+                --template model.nunjucks \
+                --plugin ./node_modules/@quenk/dagen-commons/lib/plugins/imports \
+                --namespace models \
+                ${__dirname}/schema/{schema}.json`
+
+        },
+
+        'index.nunjucks': {
+
+            schemas: ['schemaNames'],
+
+            cmd: `./node_modules/.bin/dagen --templates $(pwd)/mongodb-models \
+                  --template index.nunjucks \
+                  --namespace models \
+                 ${__dirname}/schema/{schema}.json`
+
+        }
+
     }
 
 }
