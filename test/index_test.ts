@@ -140,7 +140,35 @@ const tests: Record<Record<TestData>> = {
 
         }
 
+    },
+
+    'mongodb-search-filters': {
+
+        'model.nunjucks': {
+
+            schemas: ['post', 'user'],
+
+            cmd: `./node_modules/.bin/dagen --templates $(pwd)/mongodb-search-filters \
+                --template collection.nunjucks \
+                --plugin ./node_modules/@quenk/dagen-commons/lib/plugins/imports \
+                --namespace filters \
+                ${__dirname}/schema/{schema}.json`
+
+        },
+
+        'index.nunjucks': {
+
+            schemas: ['schemaNames'],
+
+            cmd: `./node_modules/.bin/dagen --templates $(pwd)/mongodb-search-filters \
+                  --template index.nunjucks \
+                  --namespace filters \
+                 ${__dirname}/schema/{schema}.json`
+
+        }
+
     }
+
 
 }
 

@@ -24,6 +24,8 @@
 
             "readOnly": true,
 
+            "filterAs": "number",
+
             "checks": [
 
                 ["checks#id", ["collection"]]
@@ -36,7 +38,9 @@
 
             "type": "string",
 
-            "checks": "checks#title"
+            "checks": "checks#title",
+
+            "filterAs": "string"
 
         },
 
@@ -54,7 +58,9 @@
 
             "type": "array",
 
-            "items": "string"
+            "items": "string",
+
+            "filterAs": "string"
 
         },
 
@@ -101,13 +107,13 @@
 
     "methods": {
 
-    "create": {
+        "create": {
 
-        "type": "Future<string>",
+            "type": "Future<string>",
 
-        "parameters": ["id: Id", "data: Comment"]
+            "parameters": ["id: Id", "data: Comment"]
 
-    }
+        }
     },
 
     "checks:test": {
