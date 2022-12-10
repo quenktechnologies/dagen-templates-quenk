@@ -67,7 +67,9 @@
 
             "validators": "../data-validators/validators#date",
 
-            "readOnly": true
+            "readOnly": true,
+
+            "hidden": true
 
         }
 

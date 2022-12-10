@@ -2,19 +2,14 @@
  * AUTO_GENERATED! DO NOT EDIT DIRECTLY!
  */ 
 /**
- * User policies
+ * User fields available.
  */
 export const User = {
 
-  
-
-
-
-
-
-
-
-
+          'id': 1,
+        'username': 1,
+        'email': 1,
+        'tags': 1,
 
 
 

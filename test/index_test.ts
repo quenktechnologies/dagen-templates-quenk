@@ -149,7 +149,7 @@ const tests: Record<Record<TestData>> = {
             schemas: ['post', 'user'],
 
             cmd: `./node_modules/.bin/dagen --templates $(pwd)/mongodb-search-filters \
-                --template collection.nunjucks \
+                --template model.nunjucks \
                 --plugin ./node_modules/@quenk/dagen-commons/lib/plugins/imports \
                 --namespace filters \
                 ${__dirname}/schema/{schema}.json`
@@ -167,8 +167,34 @@ const tests: Record<Record<TestData>> = {
 
         }
 
-    }
+    },
 
+    'mongodb-fields': {
+
+        'model.nunjucks': {
+
+            schemas: ['post', 'user'],
+
+            cmd: `./node_modules/.bin/dagen --templates $(pwd)/mongodb-fields \
+                --template model.nunjucks \
+                --plugin ./node_modules/@quenk/dagen-commons/lib/plugins/imports \
+                --namespace fields \
+                ${__dirname}/schema/{schema}.json`
+
+        },
+
+        'index.nunjucks': {
+
+            schemas: ['schemaNames'],
+
+            cmd: `./node_modules/.bin/dagen --templates $(pwd)/mongodb-fields \
+                  --template index.nunjucks \
+                  --namespace fields \
+                 ${__dirname}/schema/{schema}.json`
+
+        }
+
+    }
 
 }
 

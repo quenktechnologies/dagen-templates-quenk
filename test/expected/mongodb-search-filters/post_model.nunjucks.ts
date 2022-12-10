@@ -5,6 +5,8 @@
  * Post policies
  */
 export const Post = {
+
+  
     'id':        'number'
 ,
 
@@ -20,6 +22,8 @@ export const Post = {
 
 
         
+
+
 
 
 

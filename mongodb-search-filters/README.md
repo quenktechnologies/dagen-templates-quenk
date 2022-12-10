@@ -9,7 +9,7 @@ nested documents.
 ## Requirements
 
 ### Schema
-The `collection.nunjucks` template reads the `filterAs` value on each field in
+The `model.nunjucks` template reads the `filterAs` value on each field in
 the schema to generate the filter policy. Note that this template is meant to
 generate string based filter policy pointers and not the actual policy itself.
 

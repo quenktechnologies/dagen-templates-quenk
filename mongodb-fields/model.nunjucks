@@ -1,0 +1,14 @@
+/**
+ * AUTO_GENERATED! DO NOT EDIT DIRECTLY!
+ */ 
+{% from "macros.nunjucks" import schema2Fields %}
+/**
+ * {{ document.title }} fields available.
+ */
+export const {{ document.title }} = {
+
+  {{ schema2Fields(document) }}
+
+}
+
+export default {{ document.title }}
