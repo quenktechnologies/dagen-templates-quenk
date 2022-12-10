@@ -26,7 +26,8 @@ const tests: Record<Record<TestData>> = {
 
             schemas: ['post', 'user'],
 
-            cmd: `./node_modules/.bin/dagen --template data-types/type.nunjucks \
+            cmd: `./node_modules/.bin/dagen \
+                  --template templates/data-types/type.nunjucks \
                   --plugin ./node_modules/@quenk/dagen-commons/lib/plugins/imports \
                   ${__dirname}/schema/{schema}.json`,
 
@@ -40,7 +41,8 @@ const tests: Record<Record<TestData>> = {
 
             schemas: ['post', 'user'],
 
-            cmd: `./node_modules/.bin/dagen --templates $(pwd)/data-validators \
+            cmd: `./node_modules/.bin/dagen \
+                --templates $(pwd)/templates/data-validators \
                 --template type.nunjucks \
                 --plugin ./node_modules/@quenk/dagen-commons/lib/plugins/imports \
                 --plugin ./node_modules/@quenk/dagen-commons/lib/plugins/validators \
@@ -53,7 +55,8 @@ const tests: Record<Record<TestData>> = {
 
             schemas: ['post', 'user'],
 
-            cmd: `./node_modules/.bin/dagen --templates $(pwd)/data-validators \
+            cmd: `./node_modules/.bin/dagen \
+                  --templates $(pwd)/templates/data-validators \
                   --template test.nunjucks \
                   --namespace validators \
                   ${__dirname}/schema/{schema}.json`
@@ -65,7 +68,8 @@ const tests: Record<Record<TestData>> = {
 
             schemas: ['schemaNames'],
 
-            cmd: `./node_modules/.bin/dagen --templates $(pwd)/data-validators \
+            cmd: `./node_modules/.bin/dagen \
+                  --templates $(pwd)/templates/data-validators \
                   --template index.nunjucks \
                   --namespace validators \
                  ${__dirname}/schema/{schema}.json`
@@ -80,7 +84,8 @@ const tests: Record<Record<TestData>> = {
 
             schemas: ['post', 'user'],
 
-            cmd: `./node_modules/.bin/dagen --templates $(pwd)/data-checks \
+            cmd: `./node_modules/.bin/dagen \
+                --templates $(pwd)/templates/data-checks \
                 --template type.nunjucks \
                 --plugin ./node_modules/@quenk/dagen-commons/lib/plugins/imports \
                 --plugin ./node_modules/@quenk/dagen-commons/lib/plugins/checks \
@@ -94,7 +99,8 @@ const tests: Record<Record<TestData>> = {
 
             schemas: ['post', 'user'],
 
-            cmd: `./node_modules/.bin/dagen --templates $(pwd)/data-checks \
+            cmd: `./node_modules/.bin/dagen \
+                  --templates $(pwd)/templates/data-checks \
                   --template test.nunjucks \
                   --namespace checks \
                   ${__dirname}/schema/{schema}.json`
@@ -106,7 +112,8 @@ const tests: Record<Record<TestData>> = {
 
             schemas: ['schemaNames'],
 
-            cmd: `./node_modules/.bin/dagen --templates $(pwd)/data-checks \
+            cmd: `./node_modules/.bin/dagen \
+                  --templates $(pwd)/templates/data-checks \
                   --template index.nunjucks \
                   --namespace checks \
                  ${__dirname}/schema/{schema}.json`
@@ -121,7 +128,8 @@ const tests: Record<Record<TestData>> = {
 
             schemas: ['post', 'user'],
 
-            cmd: `./node_modules/.bin/dagen --templates $(pwd)/mongodb-models \
+            cmd: `./node_modules/.bin/dagen \
+                --templates $(pwd)/templates/mongodb-models \
                 --template model.nunjucks \
                 --plugin ./node_modules/@quenk/dagen-commons/lib/plugins/imports \
                 --namespace models \
@@ -133,7 +141,8 @@ const tests: Record<Record<TestData>> = {
 
             schemas: ['schemaNames'],
 
-            cmd: `./node_modules/.bin/dagen --templates $(pwd)/mongodb-models \
+            cmd: `./node_modules/.bin/dagen \
+                  --templates $(pwd)/templates/mongodb-models \
                   --template index.nunjucks \
                   --namespace models \
                  ${__dirname}/schema/{schema}.json`
@@ -148,7 +157,8 @@ const tests: Record<Record<TestData>> = {
 
             schemas: ['post', 'user'],
 
-            cmd: `./node_modules/.bin/dagen --templates $(pwd)/mongodb-search-filters \
+            cmd: `./node_modules/.bin/dagen \
+                --templates $(pwd)/templates/mongodb-search-filters \
                 --template model.nunjucks \
                 --plugin ./node_modules/@quenk/dagen-commons/lib/plugins/imports \
                 --namespace filters \
@@ -160,7 +170,8 @@ const tests: Record<Record<TestData>> = {
 
             schemas: ['schemaNames'],
 
-            cmd: `./node_modules/.bin/dagen --templates $(pwd)/mongodb-search-filters \
+            cmd: `./node_modules/.bin/dagen \
+                  --templates $(pwd)/templates/mongodb-search-filters \
                   --template index.nunjucks \
                   --namespace filters \
                  ${__dirname}/schema/{schema}.json`
@@ -175,7 +186,8 @@ const tests: Record<Record<TestData>> = {
 
             schemas: ['post', 'user'],
 
-            cmd: `./node_modules/.bin/dagen --templates $(pwd)/mongodb-fields \
+            cmd: `./node_modules/.bin/dagen \
+                --templates $(pwd)/templates/mongodb-fields \
                 --template model.nunjucks \
                 --plugin ./node_modules/@quenk/dagen-commons/lib/plugins/imports \
                 --namespace fields \
@@ -187,7 +199,8 @@ const tests: Record<Record<TestData>> = {
 
             schemas: ['schemaNames'],
 
-            cmd: `./node_modules/.bin/dagen --templates $(pwd)/mongodb-fields \
+            cmd: `./node_modules/.bin/dagen \
+                  --templates $(pwd)/templates/mongodb-fields \
                   --template index.nunjucks \
                   --namespace fields \
                  ${__dirname}/schema/{schema}.json`
@@ -202,7 +215,8 @@ const tests: Record<Record<TestData>> = {
 
             schemas: ['post', 'user'],
 
-            cmd: `./node_modules/.bin/dagen --templates $(pwd)/remote-models \
+            cmd: `./node_modules/.bin/dagen \
+                --templates $(pwd)/templates/remote-models \
                 --template model.nunjucks \
                 --plugin ./node_modules/@quenk/dagen-commons/lib/plugins/imports \
                 --namespace rmodels \
