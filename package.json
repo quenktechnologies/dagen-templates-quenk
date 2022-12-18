@@ -1,12 +1,14 @@
 {
     "name": "@quenk/dagen-templates-quenk",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Dagen templates used by Quenk Technologies Limited.",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "files": ["templates"],
+    "files": [
+        "templates"
+    ],
     "author": "Lasana Murray <info@quenk.com> (http://quenk.com/)",
     "license": "Apache-2.0",
     "devDependencies": {
