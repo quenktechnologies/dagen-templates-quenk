@@ -8,7 +8,7 @@ import { EnabledPolicies } from '@quenk/search-filters-mongodb';
 export { EnabledPolicies }
 
 {% for model in document.schemaNames.split(",") %}
-import _{{ model | trim | camelcase }} from './{{ model | trim | camelcase }}';
+import _{{ model | trim | camelcase }} from './{{ model | trim | modulecase }}';
 {% endfor %}
 
 /**
