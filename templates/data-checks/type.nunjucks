@@ -66,7 +66,7 @@ export const check: _prec.Precondition<_json.Value, {{ document.title }}> =
   {% if hasChecks(document,"complete") %}
     _prec.and(_prec.and<_json.Value, {{ document.title }},{{ document.title }}>(
       _prec.async(validate), _recordPrec.restrict(fieldChecks)),
-      _every<{{ document.title }},{{ document.title }}>({{ getChecks(document,"complete") | join(',') }})
+      _prec.every<{{ document.title }},{{ document.title }}>({{ getChecks(document,"complete") | join(',') }})
      );
   {% else %}
     _prec.and<_json.Value, {{ document.title }},{{ document.title }}>(
@@ -83,7 +83,7 @@ export const check: _prec.Precondition<_json.Value, {{ document.title }}> =
     _prec.and(_prec.and<_json.Value, {{document.title}},{{document.title}}>(
       _prec.async(validatePartial),
       _recordPrec.intersect(partialFieldChecks)),
-    _every({{getChecks(document,"partial") | join(',')}}));
+    _prec.every({{getChecks(document,"partial") | join(',')}}));
   {% else %}
     _prec.and<_json.Value, {{document.title}},{{document.title}}>(_prec.async<_json.Value,{{document.title}}>(validatePartial), 
    _recordPrec.intersect(partialFieldChecks));  
