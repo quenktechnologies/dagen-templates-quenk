@@ -6,7 +6,7 @@
 {{imports2TS(document.imports, {
   '@quenk/noni/lib/data/jsonx': '_json',
   '@quenk/preconditions': '_prec',
-  '@quenk/preconditions/lib/number': '_booleanPrec',
+  '@quenk/preconditions/lib/boolean': '_booleanPrec',
   '@quenk/preconditions/lib/number': '_numberPrec',
   '@quenk/preconditions/lib/string': '_stringPrec',
   '@quenk/preconditions/lib/record': '_recordPrec',
