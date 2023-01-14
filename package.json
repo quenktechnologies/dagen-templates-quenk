@@ -1,6 +1,6 @@
 {
     "name": "@quenk/dagen-templates-quenk",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Dagen templates used by Quenk Technologies Limited.",
     "main": "index.js",
     "scripts": {
