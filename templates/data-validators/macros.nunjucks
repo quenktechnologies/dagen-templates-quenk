@@ -11,7 +11,7 @@
 
   {%- if type.optional -%}
     {%- if isObjectType(type) -%}
-      _prec.optional<_json.Value, {{type.title}}>({{content}})
+      _prec.optional<_json.Value, {{type.title or "_json.Object"}}>({{content}})
     {%- else -%}
       _prec.optional({{content}})
     {%- endif %}
@@ -55,14 +55,14 @@
   {% if isObject(type.additionalProperties) and (not type.properties) %}
 
     {%- set content -%}
-      _prec.and(_isRecord, _recordMap<_json.Value, _json.Value, {{type.title}}>(
+      _prec.and(_recordPrec.isRecord, _recordPrec.map<_json.Value, _json.Value, {{type.title or "_json.Object"}}>(
       {{anyType2Validator(type.additionalProperties, mode)}}))
     {%- endset -%}
 
   {% elseif isObject(type.properties) %}
 
     {%- set content -%}
-      _prec.and(_isRecord, {{mode}}<_json.Value, _json.Value, {{type.title}}>({
+      _prec.and(_recordPrec.isRecord, _{{mode}}<_json.Value, _json.Value, {{type.title or "_json.Object"}}>({
         {% for key,value in type.properties %}
           {% if (not value.readOnly) or hasValidators(value,mode)  %}
             '{{key}}' : {{schema2Validator(value,mode)|trim}}{% if not loop.last %},{% endif %}

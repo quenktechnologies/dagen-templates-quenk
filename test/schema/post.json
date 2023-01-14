@@ -72,6 +72,20 @@
 
         },
 
+        "group": {
+
+          "type": "object",
+
+          "properties": {
+
+          "id": "string",
+
+          "name": "string"
+
+          }
+
+        },
+
         "created_on": {
 
             "type": "DateTime",

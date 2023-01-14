@@ -32,6 +32,12 @@ const _number = _numberPrec.toNumber;
 const _string:_prec.Precondition<_json.Value, string> =
 _prec.and(_stringPrec.isString, _stringPrec.trim);
 
+//@ts-ignore: 6133
+const _complete = _recordPrec.restrict;
+
+//@ts-ignore: 6133
+const _partial = _recordPrec.intersect;
+
 {% if document.additionalProperties and (not document.properties) %}
 /**
  * validate a value to determine if it satisfies the {{document.title}} type

@@ -10,7 +10,7 @@
 {% macro optional (type, content) %}
   {% if type.optional -%}
     {% if isObjectType(type) -%}
-      _prec.optional<any, {{type.title}}>({{content}})
+      _prec.optional<any, {{type.title or "_json.Object"}}>({{content}})
     {% else -%}
       _prec.optional({{content}})
     {% endif %}
@@ -50,12 +50,13 @@
 {% macro objectType2Test (type, mode) %}
   {% if isObject(type.additionalProperties) %}
     {% set content -%}
-       <_prec.Precondition<_json.Value,_json.Value>>_record.map<_json.Value, _json.Value, {{type.title}}>(
-       {{ anyType2Test(type.additionalProperties) }})
+    <_prec.Precondition<_json.Value,_json.Value>>_record.map<_json.Value, _json.Value,
+    {{type.title or "_json.Object"}}>({{ anyType2Test(type.additionalProperties) }})
     {% endset -%}
   {% elseif isObject(type.properties) %}
     {% set content -%}
-      <_prec.Precondition<_json.Value,_json.Value>>{{mode}}<_json.Value, _json.Value, {{type.title}}>({
+    <_prec.Precondition<_json.Value,_json.Value>>_{{mode}}<_json.Value, _json.Value, 
+     {{type.title or "_json.Object"}}>({
         {% for key,value in type.properties %}
           {% if (not value.readOnly) or hasChecks(value, mode)  %}
             '{{key}}' : {{ type2Test(value, mode) | trim }}{% if not loop.last %},{% endif %}
