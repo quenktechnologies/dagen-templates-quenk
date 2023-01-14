@@ -13,6 +13,12 @@ const title = "User";
 //@ts-ignore: 6133
 const collection = "users";
 
+//@ts-ignore: 6133
+const _complete = _recordPrec.restrict;
+
+//@ts-ignore: 6133
+const _partial = _recordPrec.intersect;
+
 /**
  * DataType checked.
  * 

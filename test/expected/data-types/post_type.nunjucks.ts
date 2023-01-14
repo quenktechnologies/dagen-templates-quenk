@@ -17,6 +17,16 @@ export interface Post extends _json.Object {
 
     'tags'? : string[],
 
+    'group'? : {
+
+  [key:string]: _json.Value
+
+    'id'? : string,
+
+    'name'? : string
+
+  },
+
     'created_on'? : DateTime,
 
     'created_by'? : string|      number

@@ -14,6 +14,12 @@ const title = "Post";
 //@ts-ignore: 6133
 const collection = "posts";
 
+//@ts-ignore: 6133
+const _complete = _recordPrec.restrict;
+
+//@ts-ignore: 6133
+const _partial = _recordPrec.intersect;
+
 /**
  * DataType checked.
  * 
@@ -36,6 +42,14 @@ export const fieldChecks: _prec.Preconditions<_json.Value, _json.Value> = {
     'tags': <_prec.Precondition<_json.Value,_json.Value>>_recordPrec.map(    _prec.identity
 ),
 
+    'group': <_prec.Precondition<_json.Value,_json.Value>>_complete<_json.Value, _json.Value, 
+     _json.Object>({
+            'id' : _prec.identity,            
+
+            'name' : _prec.identity            
+
+}),
+
     'created_on': _prec.every<_json.Value,_json.Value>(toDate,localize('Port of Spain')),
 
     'created_by': _prec.identity
@@ -51,6 +65,13 @@ export const partialFieldChecks: _prec.Preconditions<_json.Value, _json.Value> =
     'body': _prec.every<_json.Value,_json.Value>(toHTML),
     'tags': <_prec.Precondition<_json.Value,_json.Value>>_recordPrec.map(    _prec.identity
 ),
+    'group': <_prec.Precondition<_json.Value,_json.Value>>_partial<_json.Value, _json.Value, 
+     _json.Object>({
+            'id' : _prec.identity,            
+
+            'name' : _prec.identity            
+
+}),
     'created_on': _prec.every<_json.Value,_json.Value>(toDate,localize('Port of Spain')),
     'created_by': _prec.identity};
 

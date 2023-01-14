@@ -10,6 +10,9 @@ export const Post = {
         'title': 1,
         'body': 1,
         'tags': 1,
+                'group.id': 1,
+        'group.name': 1
+,
         'created_on': 1,
         
 
