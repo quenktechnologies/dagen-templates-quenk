@@ -3,7 +3,9 @@
  */
 {# Remember to include document.title type in the list of imports. #}
 {{imports2TS(document.imports, {
-"@quenk/jouvert/lib/app/model/http": "http"
+"@quenk/jouvert/lib/app/model/http": "http",
+"@quenk/noni/lib/data/jsonx": "json",
+"@quenk/jhr/lib/agent": ["Agent"]
 })}}
 {% set classname = document.title + "HttpModel" %}
 {% set paths = merge({search: 'invalid', get: 'invalid'}, document.paths or {}) %}
@@ -17,7 +19,9 @@ export class {{classname}}
 
   static paths = {{ paths | dump }}
 
-  requests = new http.RequestFactory({{classname}}.paths);
+  constructor(public agent: Agent<json.Object, json.Object>) {
+    super(agent,  new http.RequestFactory({{classname}}.paths));
+  }
 
  {% for method,spec in document.methods %}
 
