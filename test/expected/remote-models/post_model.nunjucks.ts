@@ -13,7 +13,7 @@ export class PostRemoteModel
 
   static paths = {"search":"/r/posts/search","get":"/r/posts/{id}"}
 
-  paths = PostRemoteModel.paths;
+  requests = new remoteModel.RequestFactory(PostRemoteModel.paths);
 
 
   create(id: Id,data: Comment) : Future<string> {

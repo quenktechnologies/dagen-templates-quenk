@@ -3,9 +3,9 @@
  */
 {# Remember to include document.title type in the list of imports. #}
 {{imports2TS(document.imports, {
-"@quenk/jouvert/lib/app/remote/model": "remoteModel"
+"@quenk/jouvert/lib/app/model/http": "http"
 })}}
-{% set classname = document.title + "RemoteModel" %}
+{% set classname = document.title + "HttpModel" %}
 {% set paths = merge({search: 'invalid', get: 'invalid'}, document.paths or {}) %}
 
 /**
@@ -13,11 +13,11 @@
  */
 export class {{classname}} 
   extends 
-  remoteModel.RemoteModel<{{document.title}}> {
+  http.HttpModel<{{document.title}}> {
 
   static paths = {{ paths | dump }}
 
-  requests = new remoteModel.RequestFactory({{classname}}.paths);
+  requests = new http.RequestFactory({{classname}}.paths);
 
  {% for method,spec in document.methods %}
 

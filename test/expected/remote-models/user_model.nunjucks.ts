@@ -13,7 +13,7 @@ export class UserRemoteModel
 
   static paths = {"search":"invalid","get":"invalid"}
 
-  paths = UserRemoteModel.paths;
+  requests = new remoteModel.RequestFactory(UserRemoteModel.paths);
 
 }
 

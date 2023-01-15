@@ -224,6 +224,23 @@ const tests: Record<Record<TestData>> = {
 
         },
 
+    },
+
+    'http-models': {
+
+        'model.nunjucks': {
+
+            schemas: ['post', 'user'],
+
+            cmd: `./node_modules/.bin/dagen \
+                --templates $(pwd)/templates/http-models \
+                --template model.nunjucks \
+                --plugin ./node_modules/@quenk/dagen-commons/lib/plugins/imports \
+                --namespace hmodels \
+                ${__dirname}/schema/{schema}.json`
+
+        },
+
     }
 
 }
