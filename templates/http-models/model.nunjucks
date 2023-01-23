@@ -15,12 +15,12 @@
  */
 export class {{classname}} 
   extends 
-  http.HttpModel<{{document.title}}> {
+  http.SimpleHttpModel<{{document.title}}> {
 
   static paths = {{ paths | dump }}
 
   constructor(public agent: Agent<json.Object, json.Object>) {
-    super(agent,  new http.RequestFactory({{classname}}.paths));
+    super(agent, new http.RequestFactory({{classname}}.paths));
   }
 
  {% for method,spec in document.methods %}
