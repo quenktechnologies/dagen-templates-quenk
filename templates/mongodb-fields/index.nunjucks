@@ -3,19 +3,16 @@
  */
 import { Record } from '@quenk/noni/lib/data/record';
 
+import { FieldSet } from '@quenk/backend/lib/app/model';
+
 {% for model in document.schemaNames.split(",") %}
 import _{{ model | trim | camelcase }} from './{{ model | trim | modulecase }}';
 {% endfor %}
 
 /**
- * Fields for mongodb projection.
- */
-export interface Fields extends Record<number> {}
-
-/**
  * fieldsAvailable from this module.
  */
-export const fieldsAvailable: Record<Fields> = {
+export const fieldsAvailable: Record<FieldSet> = {
 
   {% for model in document.schemaNames.split(",") %}
 

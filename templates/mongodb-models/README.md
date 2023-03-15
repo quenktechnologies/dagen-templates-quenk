@@ -1,6 +1,6 @@
 # MongoDB Models
 
-These templates generate mongodb models based on `@quenk/dback-mongodb-models.`
+These templates generate mongodb models based on `@quenk/backend/lib/app/model.`
 Most of the implementation logic is in that module.
 
 ## Requirements
