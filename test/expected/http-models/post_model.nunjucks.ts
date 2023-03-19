@@ -11,12 +11,12 @@ import { Agent } from '@quenk/jhr/lib/agent';
  */
 export class PostHttpModel 
   extends 
-  http.HttpModel<Post> {
+  http.SimpleHttpModel<Post> {
 
   static paths = {"search":"/r/posts/search","get":"/r/posts/{id}"}
 
   constructor(public agent: Agent<json.Object, json.Object>) {
-    super(agent,  new http.RequestFactory(PostHttpModel.paths));
+    super(agent, new http.RequestFactory(PostHttpModel.paths));
   }
 
 

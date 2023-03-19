@@ -6,10 +6,10 @@
  */
 export const User = {
 
-          'id': 1,
-        'username': 1,
-        'email': 1,
-        'tags': 1,
+          'id': true,
+        'username': true,
+        'email': true,
+        'tags': true,
 
 
 

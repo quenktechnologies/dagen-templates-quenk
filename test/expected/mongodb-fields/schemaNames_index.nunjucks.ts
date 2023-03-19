@@ -3,18 +3,15 @@
  */
 import { Record } from '@quenk/noni/lib/data/record';
 
+import { FieldSet } from '@quenk/backend/lib/app/model';
+
 import _post from './post';
 import _user from './user';
 
 /**
- * Fields for mongodb projection.
- */
-export interface Fields extends Record<number> {}
-
-/**
  * fieldsAvailable from this module.
  */
-export const fieldsAvailable: Record<Fields> = {
+export const fieldsAvailable: Record<FieldSet> = {
 
 
     'post': _post,

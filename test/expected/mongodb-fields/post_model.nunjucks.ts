@@ -6,17 +6,17 @@
  */
 export const Post = {
 
-          'id': 1,
-        'title': 1,
-        'body': 1,
-        'tags': 1,
-                'group.id': 1,
-        'group.name': 1
+          'id': true,
+        'title': true,
+        'body': true,
+        'tags': true,
+                'group.id': true,
+        'group.name': true
 ,
-        'created_on': 1,
+        'created_on': true,
         
 
-        'created_by': 1
+        'created_by': true
 
 
 
