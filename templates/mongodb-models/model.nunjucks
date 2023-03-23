@@ -4,7 +4,7 @@
  */
 {{imports2TS(document.imports, {
   "mongodb": "mongodb",
-  "@quenk/backend/lib/app/model": ["BaseModel"]
+  "@quenk/backend/lib/app/db/mongodb/model": ["BaseModel"]
   })
 }}
 
