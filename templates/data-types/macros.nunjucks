@@ -1,4 +1,3 @@
-{# type2TS translates a schema into a typescript type. #}
 {% macro type2TS(type) %}
   {% if type.type === 'array' %}
     {{type2TS(type.items)|trim}}[]
@@ -21,4 +20,16 @@
     {{type.type|trim}}
 
   {% endif %}
+{% endmacro %}
+
+{% macro alias2TS(map={}) %}
+  {% for key,value in map %}
+    export type {{key}} = {{value}};
+  {% endfor %}
+{% endmacro %}
+
+{% macro declare2TS(map={}) %}
+  {% for key,value in map %}
+    export const {{key}} = {{value}};
+  {% endfor %}
 {% endmacro %}

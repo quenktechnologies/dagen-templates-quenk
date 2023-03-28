@@ -13,6 +13,10 @@
 
     "collection": "users",
 
+    "alias": { "Id": "string" },
+
+    "declare": { "STATUS_ACTIVE": 1},
+
     "properties": {
 
         "id": {
