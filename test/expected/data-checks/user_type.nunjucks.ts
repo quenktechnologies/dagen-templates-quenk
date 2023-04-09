@@ -39,7 +39,7 @@ export const fieldChecks: _prec.Preconditions<_json.Value, _json.Value> = {
 
     'email': _prec.identity,
 
-    'tags': <_prec.Precondition<_json.Value,_json.Value>>_recordPrec.map(    _prec.identity
+    'tags': <_prec.Precondition<_json.Value,_json.Value>>_arrayPrec.map(    _prec.identity
 ),
 
     'last_login':                _prec.identity
@@ -55,7 +55,7 @@ export const partialFieldChecks: _prec.Preconditions<_json.Value, _json.Value> =
 ,
     'username': _prec.identity,
     'email': _prec.identity,
-    'tags': <_prec.Precondition<_json.Value,_json.Value>>_recordPrec.map(    _prec.identity
+    'tags': <_prec.Precondition<_json.Value,_json.Value>>_arrayPrec.map(    _prec.identity
 ),
     'last_login':                 _prec.identity
 };

@@ -39,7 +39,7 @@ export const fieldChecks: _prec.Preconditions<_json.Value, _json.Value> = {
 
     'body': _prec.every<_json.Value,_json.Value>(toHTML),
 
-    'tags': <_prec.Precondition<_json.Value,_json.Value>>_recordPrec.map(    _prec.identity
+    'tags': <_prec.Precondition<_json.Value,_json.Value>>_arrayPrec.map(    _prec.identity
 ),
 
     'group': <_prec.Precondition<_json.Value,_json.Value>>_complete<_json.Value, _json.Value, 
@@ -63,7 +63,7 @@ export const partialFieldChecks: _prec.Preconditions<_json.Value, _json.Value> =
     'id': _prec.every<_json.Value,_json.Value>(id(collection)),
     'title': _prec.every<_json.Value,_json.Value>(title),
     'body': _prec.every<_json.Value,_json.Value>(toHTML),
-    'tags': <_prec.Precondition<_json.Value,_json.Value>>_recordPrec.map(    _prec.identity
+    'tags': <_prec.Precondition<_json.Value,_json.Value>>_arrayPrec.map(    _prec.identity
 ),
     'group': <_prec.Precondition<_json.Value,_json.Value>>_partial<_json.Value, _json.Value, 
      _json.Object>({

@@ -28,7 +28,7 @@
 #}
 {% macro arrayType2Test(type, mode) %}
   {% set content -%}
-    <_prec.Precondition<_json.Value,_json.Value>>_recordPrec.map({{type2Test(type.items, mode)}})
+    <_prec.Precondition<_json.Value,_json.Value>>_arrayPrec.map({{type2Test(type.items, mode)}})
   {% endset %}
 
   {% if hasChecks(type,mode) -%}
@@ -50,7 +50,7 @@
 {% macro objectType2Test (type, mode) %}
   {% if isObject(type.additionalProperties) %}
     {% set content -%}
-    <_prec.Precondition<_json.Value,_json.Value>>_record.map<_json.Value, _json.Value,
+    <_prec.Precondition<_json.Value,_json.Value>>_recordPrec.map<_json.Value, _json.Value,
     {{type.title or "_json.Object"}}>({{ anyType2Test(type.additionalProperties) }})
     {% endset -%}
   {% elseif isObject(type.properties) %}
