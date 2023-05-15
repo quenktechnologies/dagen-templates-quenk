@@ -174,3 +174,35 @@ define qtl_mongodb_search_filters_index
 	--set schemaNames='$(subst $(SPACE),$(,),$(notdir $(basename ($2))))' \
 	--exclude isType > $1/index.ts
 endef
+
+# Generates the remote-models files for a project.
+#
+# parameters:
+# $1 - A path to the directory where the remote models will be output.
+# $2 - A space separated list of paths to schema files to use.
+define qtl_remote_models
+	$(DAGEN) --templates $(QTL_DAGEN_TEMPLATES)/remote-models \
+	--template model.nunjucks \
+	--plugin $(QTL_DAGEN_COMMONS)/lib/plugins/imports \
+	--namespace remotemodel \
+	--ext ts \
+	--exclude isType \
+	--out $1 \
+	$2
+endef
+
+# Generates the http-models files for a project.
+#
+# parameters:
+# $1 - A path to the directory where the http models will be output.
+# $2 - A space separated list of paths to schema files to use.
+define qtl_http_models
+	$(DAGEN) --templates $(QTL_DAGEN_TEMPLATES)/http-models \
+	--template model.nunjucks \
+	--plugin $(QTL_DAGEN_COMMONS)/lib/plugins/imports \
+	--namespace httpmodel \
+	--ext ts \
+	--exclude isType \
+	--out $1 \
+	$2
+endef
