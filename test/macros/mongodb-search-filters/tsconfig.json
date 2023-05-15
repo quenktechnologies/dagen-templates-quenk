@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "lib": ["es2017", "DOM"],
+        "module": "commonjs",
+        "target": "es7",
+        "rootDir": ".",
+        "moduleResolution": "node",
+        "allowUnreachableCode": true,
+        "noUnusedParameters": true,
+        "noUnusedLocals": true,
+        "strict": true,
+        "types": ["node"],
+        "typeRoots": ["node_modules/@types"],
+        "noErrorTruncation": true
+    },
+    "exclude": ["node_modules"]
+}

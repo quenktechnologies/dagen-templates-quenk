@@ -16,6 +16,7 @@ include ./data-validators/build.mk
 include ./data-checks/build.mk
 include ./mongodb-models/build.mk
 include ./mongodb-fields/build.mk
+include ./mongodb-search-filters/build.mk
 
 .PHONY: clean
 clean:

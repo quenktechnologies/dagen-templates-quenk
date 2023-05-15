@@ -116,10 +116,10 @@ define qtl_mongodb_models_index
 	> $1/index.ts
 endef
 
-# Generates the index file for mongodb-fields files in a project.
+# Generates the mongodb-fields files for a project.
 #
 # parameters:
-# $1 - A path to the directory where the fields are.
+# $1 - A path to the directory where the fields will be output.
 # $2 - A space separated list of paths to schema files to use.
 define qtl_mongodb_fields
 	$(DAGEN) --templates $(QTL_DAGEN_TEMPLATES)/mongodb-fields \
@@ -141,6 +141,36 @@ define qtl_mongodb_fields_index
 	$(DAGEN) --templates $(QTL_DAGEN_TEMPLATES)/mongodb-fields \
 	--template index.nunjucks \
 	--namespace fields \
+	--set schemaNames='$(subst $(SPACE),$(,),$(notdir $(basename ($2))))' \
+	--exclude isType \
+	> $1/index.ts
+endef
+
+# Generates the mongodb-search-filters files for a project.
+#
+# parameters:
+# $1 - A path to the directory where the search filters will be output.
+# $2 - A space separated list of paths to schema files to use.
+define qtl_mongodb_search_filters
+	$(DAGEN) --templates $(QTL_DAGEN_TEMPLATES)/mongodb-search-filters \
+	--template model.nunjucks \
+	--plugin $(QTL_DAGEN_COMMONS)/lib/plugins/imports \
+	--namespace filters \
+	--ext ts \
+	--exclude isType \
+	--out $1 \
+	$2
+endef
+
+# Generates the index file for mongodb-search-filters files in a project.
+#
+# parameters:
+# $1 - A path to the directory where the search filters are.
+# $2 - A space separated list of paths to schema files to use.
+define qtl_mongodb_search_filters_index
+	$(DAGEN) --templates $(QTL_DAGEN_TEMPLATES)/mongodb-search-filters \
+	--template index.nunjucks \
+	--namespace filters \
 	--set schemaNames='$(subst $(SPACE),$(,),$(notdir $(basename ($2))))' \
 	--exclude isType > $1/index.ts
 endef
