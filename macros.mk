@@ -115,3 +115,32 @@ define qtl_mongodb_models_index
 	--set schemaNames='$(subst $(SPACE),$(,),$(notdir $(basename ($2))))' \
 	> $1/index.ts
 endef
+
+# Generates the index file for mongodb-fields files in a project.
+#
+# parameters:
+# $1 - A path to the directory where the fields are.
+# $2 - A space separated list of paths to schema files to use.
+define qtl_mongodb_fields
+	$(DAGEN) --templates $(QTL_DAGEN_TEMPLATES)/mongodb-fields \
+	--template model.nunjucks \
+	--plugin $(QTL_DAGEN_COMMONS)/lib/plugins/imports \
+	--namespace fields \
+	--ext ts \
+	--exclude isType \
+	--out $1 \
+	$2
+endef
+
+# Generates the index file for mongodb-fields files in a project.
+#
+# parameters:
+# $1 - A path to the directory where the fields are.
+# $2 - A space separated list of paths to schema files to use.
+define qtl_mongodb_fields_index
+	$(DAGEN) --templates $(QTL_DAGEN_TEMPLATES)/mongodb-fields \
+	--template index.nunjucks \
+	--namespace fields \
+	--set schemaNames='$(subst $(SPACE),$(,),$(notdir $(basename ($2))))' \
+	--exclude isType > $1/index.ts
+endef
