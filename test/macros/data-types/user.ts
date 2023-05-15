@@ -1,7 +1,9 @@
 import * as _json from '@quenk/noni/lib/data/jsonx';
 
+    export type Id = string;
 
 
+    export const STATUS_ACTIVE = 1;
 
  
 /**
@@ -11,7 +13,15 @@ export interface User extends _json.Object {
 
   [key:string]: _json.Value
 
-    'name'? : string
+    'id'? : number,
+
+    'username'? : string,
+
+    'email'? : string,
+
+    'tags'? : string[],
+
+    'last_login'? : string
 
   }
 

@@ -23,7 +23,7 @@ QTL_DAGEN_COMMONS?=./node_modules/@quenk/dagen-commons/lib/plugins/imports
 #  QTL_DAGEN_TEMPLATES 	- The path to the dagen-templates-quenk package.
 #  QTL_DAGEN_COMMONS 	- The path to the dagen-commons package.
 
-# Generates the data-types package for a project.
+# Generates the data-types files for a project.
 #
 # $1 - A path to the directory where types will be output.
 # $2 - A space separated list of paths to schema files to use.
@@ -37,7 +37,7 @@ define qtl_data_types
 	$2
 endef
 
-# Generates the data-validators package for a project.
+# Generates the data-validators files for a project.
 #
 # parameters:
 # $1 - A path to the directory where the validators will be output.
@@ -54,7 +54,7 @@ define qtl_data_validators
 	$2
 endef
 
-# Generates the data-checks package for a project.
+# Generates the data-checks files for a project.
 #
 # parameters:
 # $1 - A path to the directory where the checks will be output.
@@ -72,10 +72,10 @@ define qtl_data_checks
 	$2
 endef
 
-# Generates the index file for a data-checks package in a project.
+# Generates the index file for data-checks files in a project.
 #
 # parameters:
-# $1 - A path to the directory where the checks are output.
+# $1 - A path to the directory where the checks are.
 # $2 - A space separated list of paths to schema files to use.
 define qtl_data_checks_index
 	$(DAGEN) --templates $(QTL_DAGEN_TEMPLATES)/data-checks \
@@ -83,6 +83,35 @@ define qtl_data_checks_index
 	--plugin $(QTL_DAGEN_COMMONS)/lib/plugins/imports \
 	--namespace validators \
 	--namespace checks \
-	--set schemaNames="$(subst $(SPACE),$(,),$(notdir $(basename ($2))))" \
-	--exclude isType > $1/index.ts
+	--set schemaNames='$(subst $(SPACE),$(,),$(notdir $(basename ($2))))' \
+	> $1/index.ts
+endef
+
+# Generates the mongodb-models files for a project.
+#
+# parameters:
+# $1 - A path to the directory where the models will be output.
+# $2 - A space separated list of paths to schema files to use.
+define qtl_mongodb_models
+	$(DAGEN) --templates $(QTL_DAGEN_TEMPLATES)/mongodb-models \
+	--template model.nunjucks \
+	--plugin $(QTL_DAGEN_COMMONS)/lib/plugins/imports \
+	--namespace models \
+	--ext ts \
+	--exclude isType \
+	--out $1 \
+	$2
+endef
+
+# Generates the index file for mongodb-models files in a project.
+#
+# parameters:
+# $1 - A path to the directory where the models are.
+# $2 - A space separated list of paths to schema files to use.
+define qtl_mongodb_models_index
+	$(DAGEN) --templates $(QTL_DAGEN_TEMPLATES)/mongodb-models \
+	--template index.nunjucks \
+	--namespace models \
+	--set schemaNames='$(subst $(SPACE),$(,),$(notdir $(basename ($2))))' \
+	> $1/index.ts
 endef

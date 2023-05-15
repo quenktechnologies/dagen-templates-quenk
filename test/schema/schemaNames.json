@@ -4,6 +4,10 @@
 
     "title": "SchemaNames",
 
-    "schemaNames": "post,user"
+    "schemaNames": "post,user",
+
+    "isType": true,
+
+    "properties": {"null": {"type":"string"}}
 
 }
