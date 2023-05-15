@@ -1,19 +1,23 @@
 {
-  "title": "Post",
-  "type": "object",
-  "properties": {
+    "title": "Post",
+    "type": "object",
+    "properties": {
 
-    "title": {
+        "title": {
 
-      "type": "string"
+            "type": "string",
 
-    },
+            "checks": [".#unique"]
 
-    "body": {
+        },
 
-      "type": "string"
+        "body": {
 
+            "type": "string",
+
+            "validators": [".#html"]
+
+        }
     }
-  }
 
 }

@@ -6,33 +6,83 @@
 # at random when a better way of doing things is discovered but for the most
 # part an effort should be made to ensure they have the same build artifacts.
 
+,:=,
+SPACE:=
+SPACE:=$(SPACE) $(SPACE)
+
 DAGEN?=./node_modules/.bin/dagen
 TSC?=./node_modules/.bin/tsc
+
 QTL_DAGEN_TEMPLATES?=node_modules/@quenk/dagen-templates-quenk/templates
 QTL_DAGEN_COMMONS?=./node_modules/@quenk/dagen-commons/lib/plugins/imports
 
-# Generates the types package for a project using data-types package.
-#
+# These are set already but can be overriden for customisation.
 # globals:
 #  DAGEN 		- The path to the dagen executable.
 #  TSC   		- The path to the typescript compiler.
-#  QTL_DAGEN_TEMPLATES 	- The path to the dagen-templates-quenk pacakge.
+#  QTL_DAGEN_TEMPLATES 	- The path to the dagen-templates-quenk package.
 #  QTL_DAGEN_COMMONS 	- The path to the dagen-commons package.
+
+# Generates the data-types package for a project.
 #
-# parameters:
-# $1 - The path to the directory where types are built to.
-# $2 - A space separated list of paths to generate type files for.
+# $1 - A path to the directory where types will be output.
+# $2 - A space separated list of paths to schema files to use.
 define qtl_data_types
-	rm -R $@ || true
-	cp -R -u $1/src $@
-	mkdir -p $@
 	$(DAGEN) --templates $(QTL_DAGEN_TEMPLATES)/data-types \
 	--template type.nunjucks \
 	--plugin $(QTL_DAGEN_COMMONS)/lib/plugins/imports \
 	--namespace types \
 	--ext ts \
-	--out $@ \
+	--out $1 \
 	$2
-	$(TSC) --project $@
-	touch $@
+endef
+
+# Generates the data-validators package for a project.
+#
+# parameters:
+# $1 - A path to the directory where the validators will be output.
+# $2 - A space separated list of paths to schema files to use.
+define qtl_data_validators
+	$(DAGEN) --templates $(QTL_DAGEN_TEMPLATES)/data-validators \
+	--template type.nunjucks \
+        --plugin $(QTL_DAGEN_COMMONS)/lib/plugins/imports \
+        --plugin $(QTL_DAGEN_COMMONS)/lib/plugins/validators \
+	--namespace validators \
+	--ext ts \
+	--exclude isType \
+	--out $1 \
+	$2
+endef
+
+# Generates the data-checks package for a project.
+#
+# parameters:
+# $1 - A path to the directory where the checks will be output.
+# $2 - A space separated list of paths to schema files to use.
+define qtl_data_checks
+	$(DAGEN) --templates $(QTL_DAGEN_TEMPLATES)/data-checks \
+	--template type.nunjucks \
+	--plugin $(QTL_DAGEN_COMMONS)/lib/plugins/imports \
+	--plugin $(QTL_DAGEN_COMMONS)/lib/plugins/checks \
+	--namespace validators \
+	--namespace checks \
+	--ext ts \
+	--exclude isType \
+	--out $1 \
+	$2
+endef
+
+# Generates the index file for a data-checks package in a project.
+#
+# parameters:
+# $1 - A path to the directory where the checks are output.
+# $2 - A space separated list of paths to schema files to use.
+define qtl_data_checks_index
+	$(DAGEN) --templates $(QTL_DAGEN_TEMPLATES)/data-checks \
+	--template index.nunjucks \
+	--plugin $(QTL_DAGEN_COMMONS)/lib/plugins/imports \
+	--namespace validators \
+	--namespace checks \
+	--set schemaNames="$(subst $(SPACE),$(,),$(notdir $(basename ($2))))" \
+	--exclude isType > $1/index.ts
 endef
