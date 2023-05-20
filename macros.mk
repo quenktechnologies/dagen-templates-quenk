@@ -13,8 +13,8 @@ SPACE:=$(SPACE) $(SPACE)
 DAGEN?=./node_modules/.bin/dagen
 TSC?=./node_modules/.bin/tsc
 
-QTL_DAGEN_TEMPLATES?=node_modules/@quenk/dagen-templates-quenk/templates
-QTL_DAGEN_COMMONS?=./node_modules/@quenk/dagen-commons/lib/plugins/imports
+QTL_DAGEN_TEMPLATES?=./node_modules/@quenk/dagen-templates-quenk/templates
+QTL_DAGEN_COMMONS?=./node_modules/@quenk/dagen-commons
 
 # These are set already but can be overriden for customisation.
 # globals:

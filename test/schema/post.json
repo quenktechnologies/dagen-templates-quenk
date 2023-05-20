@@ -18,9 +18,9 @@
 
     "paths": {
 
-      "search": "/r/posts/search",
+        "search": "/r/posts/search",
 
-      "get": "/r/posts/{id}"
+        "get": "/r/posts/{id}"
 
     },
 
@@ -74,15 +74,15 @@
 
         "group": {
 
-          "type": "object",
+            "type": "object",
 
-          "properties": {
+            "properties": {
 
-          "id": "string",
+                "id": "string",
 
-          "name": "string"
+                "name": "string"
 
-          }
+            }
 
         },
 
