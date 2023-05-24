@@ -186,7 +186,7 @@ define qtl_remote_models
 	$(DAGEN) --templates $(QTL_DAGEN_TEMPLATES)/remote-models \
 	--template model.nunjucks \
 	--plugin $(QTL_DAGEN_COMMONS)/lib/plugins/imports \
-	--namespace remotemodel \
+	--namespace remotemodels \
 	--ext ts \
 	--exclude isType \
 	--out $1 \
