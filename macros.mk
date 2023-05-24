@@ -49,7 +49,6 @@ define qtl_data_validators
         --plugin $(QTL_DAGEN_COMMONS)/lib/plugins/validators \
 	--namespace validators \
 	--ext ts \
-	--exclude isType \
 	--out $1 \
 	$2
 endef
