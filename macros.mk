@@ -83,6 +83,7 @@ define qtl_data_checks_index
 	--plugin $(QTL_DAGEN_COMMONS)/lib/plugins/imports \
 	--namespace validators \
 	--namespace checks \
+	--exclude isType \
 	--set schemaNames='$(subst $(SPACE),$(,),$(notdir $(basename ($2))))' \
 	> $1/index.ts
 endef
@@ -112,6 +113,7 @@ define qtl_mongodb_models_index
 	$(DAGEN) --templates $(QTL_DAGEN_TEMPLATES)/mongodb-models \
 	--template index.nunjucks \
 	--namespace models \
+	--exclude isType \
 	--set schemaNames='$(subst $(SPACE),$(,),$(notdir $(basename ($2))))' \
 	> $1/index.ts
 endef
