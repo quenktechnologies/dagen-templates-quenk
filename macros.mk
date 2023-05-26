@@ -87,6 +87,9 @@ define qtl_data_checks_index
 	> $1/index.ts
 endef
 
+QTL_MONGODB_MODELS_TEMPLATES?=
+qtlmmt:=$(if $(QTL_MONGODB_MODELS_TEMPLATES),$(foreach dirs,$(QTL_MONGODB_MODELS_TEMPLATES),--templates $(dirs) ))
+
 # Generates the mongodb-models files for a project.
 #
 # parameters:
@@ -94,6 +97,7 @@ endef
 # $2 - A space separated list of paths to schema files to use.
 define qtl_mongodb_models
 	$(DAGEN) --templates $(QTL_DAGEN_TEMPLATES)/mongodb-models \
+	$(qtlmmt) \
 	--template model.nunjucks \
 	--plugin $(QTL_DAGEN_COMMONS)/lib/plugins/imports \
 	--namespace models \
@@ -176,6 +180,9 @@ define qtl_mongodb_search_filters_index
 	--exclude isType > $1/index.ts
 endef
 
+QTL_REMOTE_MODELS_TEMPLATES?=
+qtlrmt:=$(if $(QTL_REMOTE_MODELS_TEMPLATES),$(foreach dirs,$(QTL_REMOTE_MODELS_TEMPLATES),--templates $(dirs) ))
+
 # Generates the remote-models files for a project.
 #
 # parameters:
@@ -183,6 +190,7 @@ endef
 # $2 - A space separated list of paths to schema files to use.
 define qtl_remote_models
 	$(DAGEN) --templates $(QTL_DAGEN_TEMPLATES)/remote-models \
+	$(qtlrmt) \
 	--template model.nunjucks \
 	--plugin $(QTL_DAGEN_COMMONS)/lib/plugins/imports \
 	--namespace remotemodels \
