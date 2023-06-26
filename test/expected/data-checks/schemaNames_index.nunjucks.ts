@@ -4,7 +4,7 @@
 import * as _post from './post';
 import * as _user from './user';
 
-import { Value, Object } from '@quenk/noni/lib/data/jsonx';
+import { Value } from '@quenk/noni/lib/data/jsonx';
 import { Maybe, fromNullable} from '@quenk/noni/lib/data/maybe';
 import { Record } from '@quenk/noni/lib/data/record';
 import { AsyncPrecondition } from '@quenk/preconditions/lib/async';
@@ -42,13 +42,13 @@ export type CheckProviderUnion =
 /**
  * Check is an async precondition specialized for processing jsonx values.
  */
-export type Check<T extends Object> = AsyncPrecondition<Value, T>;
+export type Check<T extends Value> = AsyncPrecondition<Value, T>;
 
 /**
  * ChecksMap is a record mapping normalized model names to their 
  * respective checks.
  */
-export interface ChecksMap<T extends Object>
+export interface ChecksMap<T extends Value>
   extends 
   Record<Check<T>>{}
 
