@@ -24,6 +24,12 @@
 
     },
 
+    "checks:context": {
+
+        "title": "new Function"
+
+    },
+
     "properties": {
 
         "id": {
