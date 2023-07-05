@@ -26,8 +26,7 @@ const _boolean = _booleanPrec.toBoolean;
 const _number = _numberPrec.toNumber;
 
 //@ts-ignore: 6133
-const _string:_prec.Precondition<_json.Value, string> =
-_prec.and(_stringPrec.isString, _stringPrec.trim);
+const _string = _stringPrec.isString;
 
 //@ts-ignore: 6133
 const _complete = _recordPrec.restrict;
